@@ -1,0 +1,67 @@
+section.hero.is-info.is-small
+  .hero-body
+    .container.has-text-centered
+      p.title
+        |Listing works
+      p.subtitle
+        | x
+
+section.pt-1
+  .container
+    - @works.each do |work|
+      = link_to (image_tag work.artwork, size: "256x256"), work_path(work)
+      / .player
+      /   .cover-art
+      /     .work-title = work.title
+      /     .play-button
+      /       = link_to "Show", work_path(work)
+
+
+
+
+      / - ActiveSupport::JSON.decode(work.payload).each do |track|
+      /  .player
+      /    .cover-art
+      /       .work-title = track["title"]
+      /       .play-button[work-id="#{work.uuid}" track-id="#{track['uuid']}"]
+      /         |Play>
+      /       = link_to "Show", work_path(work)
+            / = work.uuid
+            / = track["uuid"]
+    / .table-container
+    /   table.table.is-bordered.is-hoverable.is-fullwidth
+
+    /     thead
+    /       tr
+    /         th Title
+    /         th Uuid
+    /         th Tracks
+    /         th
+
+
+    /     tbody
+    /       - @works.each do |work|
+    /         tr
+    /           td = work.title
+    /           td = work.uuid
+    /           td
+    /             - ActiveSupport::JSON.decode(work.payload).each do |track|
+    /               b = track["title"]
+    /               br/
+    /               = track["audio_file"]
+    /               br/
+
+    /           td
+    /             = link_to 'Show', work
+    /             / = link_to 'Edit', edit_work_path(work)
+    /             / = link_to 'Destroy', work, data: { confirm: 'Are you sure?' }, method: :delete
+
+
+
+/= link_to 'New Work', new_work_path
+
+
+// javascript:
+//   $( "#target" ).click(function() {
+//     alert( "Handler for .click() called." );
+//   });

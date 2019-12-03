@@ -1,0 +1,4 @@
+$("#dialog").empty();
+
+$("#logout-botton").append("<%= escape_javascript(render '/shared/logout_button', request_url: @request_url ) %>")
+// = render "/shared/logout_button", request_url: @request_url

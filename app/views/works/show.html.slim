@@ -1,0 +1,76 @@
+= render "/shared/navbar"
+section.hero.has-background-grey-light.is-small
+  .hero-body
+    .container.has-text-centered
+      p.title
+        = @work.title
+      p.subtitle
+        | x
+
+/== render 'shared/authorized'
+
+section.pt-1
+  .columns
+    .column.is-half
+      .is-pulled-right
+        = image_tag @work.artwork, size: "512x512"
+    .column
+      p
+        strong Title:
+        = @work.title
+      p
+        strong Uuid:
+        = @work.uuid
+      p
+        strong Tracks:
+        br/
+        - ActiveSupport::JSON.decode(@work.payload).each do |track|
+
+          div[id="#{track['uuid']}"]
+
+
+
+          #player
+            audio#music_player
+
+              source src="https://backend-01.s3.amazonaws.com/uploads/file02%20(4).mp3"
+              /source src=""
+            .play-button[work-id="#{@work.uuid}" track-id="#{track['uuid']}"]
+              - if authorized_user?
+                input#play_button onclick="play_aud()" src="/images/play.png" type="image"
+              - else
+                input#play_button src="/images/play.png" type="image"
+
+            input#play_button onclick="pause_aud()" src="/images/pause.png" type="image"
+            input#play_button onclick="stop_aud()" src="/images/stop.png" type="image"
+            img#vol_img src="/images/volume.png" /
+            input#change_vol max="1" min="0" onchange="change_vol()" step="0.05" type="range" value="1"
+
+
+javascript:
+  var player;
+  startplayer();
+
+  function startplayer()
+  {
+    player = document.getElementById('music_player');
+    player.controls = false;
+  }
+
+  function play_aud()
+  {
+    player.play();
+  }
+  function pause_aud()
+  {
+    player.pause();
+  }
+  function stop_aud()
+  {
+    player.pause();
+    player.currentTime = 0;
+  }
+  function change_vol()
+  {
+    player.volume=document.getElementById("change_vol").value;
+  }

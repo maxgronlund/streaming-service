@@ -1,0 +1,26 @@
+.modal.is-active
+  .modal-background
+  .modal-content
+    .box
+      h1.title Login
+      = form_tag('/authenticate/user', remote: true)
+        = label_tag "email"
+        = email_field_tag 'email', nil, class: "input"
+
+
+        = label_tag "password"
+        = password_field_tag 'password', nil, class: "input"
+        .pt-1
+          = submit_tag 'Login', class: "button is-primary"
+          |&nbsp;
+          .button.close-modal Cancel
+
+
+
+  button.modal-close.close-modal.is-large aria-label="close"
+
+
+javascript:
+  $(".close-modal").click( function() {
+    $("#dialog").empty();
+  });

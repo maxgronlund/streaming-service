@@ -1,0 +1,58 @@
+#dialog
+span[id="authorized" value="#{authorized_user? ? 'true' : 'false'}" user_id="#{authorized_user_id}"]
+nav.navbar.has-background-grey.is-fixed-top aria-label=("main navigation") role="navigation"
+  .container
+    .navbar-brand
+      = link_to image_tag("/images/funkey-beats.png", size: "160x640"), root_path
+      / = "/images/CopperDove-logo.png" |> img_tag(width: "190") |> link(to: "/")
+      / = link("Home", to: "/", class: "navbar-item")
+        / img height="28" src="images/CopperDove-logo.png" width="160" /
+      / a.navbar-item href="https://xkcd.com/1334/"
+      /   img height="28" src="images/CopperDove-logo.png" width="112" /
+      a.navbar-burger.burger aria-expanded="false" aria-label="menu" data-target="navbarBasicExample"  role="button"
+        span aria-hidden="true"
+        span aria-hidden="true"
+        span aria-hidden="true"
+    #navbarBasicExample.navbar-menu
+      .navbar-start
+        / a.navbar-item
+        /   | Developers
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link
+            /= gettext("navbar drop down menu")
+          .navbar-dropdown
+            = link_to "Værker", works_path, class: "navbar-item"
+            /= link gettext("menu link to home"), to: "/", class: "navbar-item"
+            /= link gettext("menu link to publishers"), to: "/publishers", class: "navbar-item"
+            /= link gettext("menu link to users"), to: "/users", class: "navbar-item"
+            /= link gettext("menu link to streaming services"), to: "/streaming_services", class: "navbar-item"
+
+            / a.navbar-item
+            /   | Invest
+            / a.navbar-item
+            /   | Contact
+            / hr.navbar-divider/
+            / a.navbar-item
+            /   | Report an issue
+            /
+      .navbar-end
+        .navbar-item
+          .buttons
+            #logout-botton
+            - if authorized_user?
+              = render "/shared/logout_button", request_url: request.url
+            / strong
+            /   = link( \
+            /     "Log out",\
+            /     to: Routes.user_session_path(@conn, :delete, @current_user), \
+            /     method: "delete", \
+            /     class: "button is-light" \
+            /   )
+            /- else
+            / strong = link("Sign up", to: "/users/new", class: "button is-primary")
+            / '&nbsp;
+            / strong = link( "Log in", to: "/users/sessions/new", class: "button is-light" )
+
+
+
+
