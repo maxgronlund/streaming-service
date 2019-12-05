@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
 
     response =
       Excon.post(
-        "http://localhost:4000/api/v1/",
+        "https://floating-headland-90342.herokuapp.com/api/v1/",
         :headers => {
           "Content-Type" => "application/json",
           "Api-Version" => "1.0",
