@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :sessions, only: %i[new destroy create]
+  resources :users
   resources :works
   namespace :api do
     namespace :v1 do
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   # get 'authorize/user/:id'
   #get '/authorize/:id', to: 'authorize#user'
   get '/authorize/track', to: 'authorize#track'
-  get '/session/delete', to: 'session#delete'
+  #get '/session/delete', to: 'session#delete'
   get '/authentication_open_dialog', to: 'authenticate#open_dialog'
   post '/authenticate/user', to: 'authenticate#user'
   get 'home/index'

@@ -1,9 +1,9 @@
 #dialog
 span[id="authorized" value="#{authorized_user? ? 'true' : 'false'}" user_id="#{authorized_user_id}"]
-nav.navbar.has-background-grey.is-fixed-top aria-label=("main navigation") role="navigation"
+nav.navbar.white-ter.is-fixed-top aria-label=("main navigation") role="navigation"
   .container
     .navbar-brand
-      = link_to image_tag("/images/funkey-beats.png", size: "160x640"), root_path
+      = link_to image_tag("/images/funkey-beats.png", size: "160x640"), root_path, class: "logo"
       / = "/images/CopperDove-logo.png" |> img_tag(width: "190") |> link(to: "/")
       / = link("Home", to: "/", class: "navbar-item")
         / img height="28" src="images/CopperDove-logo.png" width="160" /
@@ -40,7 +40,7 @@ nav.navbar.has-background-grey.is-fixed-top aria-label=("main navigation") role=
           .buttons
             #logout-botton
             - if authorized_user?
-              = render "/shared/logout_button", request_url: request.url
+              = render "/shared/logout_button", @request_url
             / strong
             /   = link( \
             /     "Log out",\

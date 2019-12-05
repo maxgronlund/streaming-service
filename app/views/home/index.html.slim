@@ -1,4 +1,4 @@
-== render 'shared/navbar'
+== render 'shared/navbar', request_url: request.url
 section.hero.is-info.is-small
   .hero-body
     .container.has-text-centered
@@ -6,6 +6,11 @@ section.hero.is-info.is-small
         |Streaming service
       p.subtitle
         |Demo app for integartion with the Copper-Dove backend
+
+section
+  .container.pt-1
+    - unless authorized_user?
+      = link_to "Log in", new_session_path, class: "button"
 
 
 

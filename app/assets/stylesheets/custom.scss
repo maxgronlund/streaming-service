@@ -38,3 +38,16 @@ input[type="image"] {
   width:20px;
   margin-right: 8px;
 }
+
+.navbar-brand {
+  a:hover {
+    background-color: #fff !important;
+  }
+}
+
+
+.inline-checkbox-label {
+  label {
+    display: inline-block !important;
+  }
+}

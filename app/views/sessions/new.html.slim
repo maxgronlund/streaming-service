@@ -1,0 +1,42 @@
+== render 'shared/navbar', request_url: root_path
+section.hero.is-orange.is-small
+  .hero-body
+    .container.has-text-centered
+      p.title.has-text-white
+        |Login
+      p.subtitle.has-text-white
+        |med din copper dove account
+section.pt-1
+  .container
+    .columns
+      .column.is-half.is-offset-one-quarter
+        -if flash[:notice]
+          .notification.is-danger
+            = flash[:notice]
+
+
+
+        = form_tag sessions_path, method: 'post' do |f|
+          - unless flash.alert.nil?
+            .alert.alert-danger
+              = flash.alert
+          .form-inputs
+            = label_tag :email
+            br
+            = text_field_tag :email, params[:email] , class: 'input form-control' , required: true, autofocus: true
+            br
+            = label_tag :password
+            br
+            = password_field_tag :password, '', class: 'input form-control'
+            br
+            .inline-checkbox-label.pt-1
+              = check_box_tag :remember_me, 1, params[:remember_me], class: 'checkbox'
+              = label_tag :remember_me, t('remember_me')
+            br
+          .form-actions
+            .pull-right
+              = submit_tag "Log ind", class: 'button', id: 'log-in'
+
+        / = link_to t('forgot_password'), reset_password_index_path
+        / br
+        / = link_to t('signup'), create_account_index_path

@@ -76,8 +76,7 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     erubi (1.9.0)
-    faraday (0.17.1)
-      multipart-post (>= 1.2, < 3)
+    excon (0.67.0)
     ffi (1.11.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -102,7 +101,6 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.13.0)
     msgpack (1.3.1)
-    multipart-post (2.1.1)
     nio4r (2.5.2)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
@@ -145,6 +143,8 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    rbnacl (7.1.0)
+      ffi
     regexp_parser (1.6.0)
     ruby_dep (1.5.0)
     rubyzip (2.0.0)
@@ -216,12 +216,13 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  faraday
+  excon
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.1)
+  rbnacl
   sass-rails (>= 6)
   selenium-webdriver
   slim-rails

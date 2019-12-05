@@ -16,4 +16,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :authorized_user_id
 
+  def current_user
+    session[:authorized_user_id]
+  end
+  helper_method :current_user
+
 end

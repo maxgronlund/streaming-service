@@ -1,1 +1,1 @@
-= link_to "Log ud", session_delete_path(request_url: request_url), class: "button"
+= link_to "Log ud", session_path(current_user, request_url: root_path), method: :delete, class: "button"
