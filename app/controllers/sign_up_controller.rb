@@ -5,7 +5,7 @@ class SignUpController < ApplicationController
     redirect_url =
       ENV["BACKEND_URL"] +
       "oauth?response_type=code" +
-      "&redirect_uri=http://localhost:3000/oauth_callback" +
+      "&redirect_uri=#{ENV['STREAMING_CLIENT_HOST']}oauth_callback" +
       "&client_id=#{ENV['STREAMING_CLIENT_ID']}"
     # ap CGI.escape(redirect_uri)
     # #{ENV['STREAMING_CLIENT_ID']}/log_in/new
