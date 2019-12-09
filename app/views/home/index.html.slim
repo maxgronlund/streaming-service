@@ -7,10 +7,9 @@ section.hero.is-info.is-small
       p.subtitle
         |Demo app for integartion with the Copper-Dove backend
 
-section
-  .container.pt-1
-    - unless authorized_user?
-      = link_to "Log in", new_session_path, class: "button"
+
+
+      /= link_to "Log in", new_session_path, class: "button"
 
 
 

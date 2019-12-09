@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
 
-  resources :sessions, only: %i[new destroy create]
+  #get 'oauth_callback/index'
+  get 'sign_up/new'
+  # get 'sign_up/create'
+  resources :sessions#, only: %i[create]
+  resources :oauth_callback, only: [:index]
   resources :users
   resources :works
+  resources :authenticate, only: [:show]
   namespace :api do
     namespace :v1 do
       resources :endpoint
@@ -12,10 +17,10 @@ Rails.application.routes.draw do
 
   # get 'authorize/user/:id'
   #get '/authorize/:id', to: 'authorize#user'
-  get '/authorize/track', to: 'authorize#track'
+  # get '/authorize/track', to: 'authorize#track'
   #get '/session/delete', to: 'session#delete'
-  get '/authentication_open_dialog', to: 'authenticate#open_dialog'
-  post '/authenticate/user', to: 'authenticate#user'
+  # get '/authentication_open_dialog', to: 'authenticate#open_dialog'
+  #
   get 'home/index'
   root 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

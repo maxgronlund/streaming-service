@@ -39,8 +39,10 @@ nav.navbar.white-ter.is-fixed-top aria-label=("main navigation") role="navigatio
         .navbar-item
           .buttons
             #logout-botton
-            - if authorized_user?
+            - if current_user
               = render "/shared/logout_button", @request_url
+            - else
+              = link_to "Login", sign_up_new_path, class: "button is-pulled-right"
             / strong
             /   = link( \
             /     "Log out",\
